@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  bicep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: az bicep install
+      - run: az bicep build --file infra/main.bicep --stdout > /dev/null
+      - run: az bicep lint --file infra/main.bicep
+
+  powershell:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Analyse and test
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer, Pester -Force -Scope CurrentUser -SkipPublisherCheck
+          $issues = Invoke-ScriptAnalyzer -Path ./scripts -Recurse -Severity Error, Warning
+          $issues | Format-Table -AutoSize
+          if ($issues | Where-Object Severity -eq 'Error') { exit 1 }
+          Invoke-Pester ./tests -CI

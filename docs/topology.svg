@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="t d">
+  <title id="t">Two-node availability group on Azure</title>
+  <desc id="d">Clients connect to the listener address on an internal Standard load balancer. The load balancer probes both SQL Server VMs on port 59999 and sends traffic only to the primary, which commits synchronously to the secondary in another availability zone. A cloud witness in Azure Storage holds the third quorum vote. Both VMs are joined to Active Directory.</desc>
+  <style>
+    .box { fill: #121214; stroke: #3a3a3f; stroke-width: 1; }
+    .accent { stroke: #ff6f37; }
+    .group { fill: none; stroke: #3a3a3f; stroke-dasharray: 4 4; }
+    .title { font: 600 11px ui-monospace, 'JetBrains Mono', Consolas, monospace; letter-spacing: 0.08em; fill: #f2f2f0; text-transform: uppercase; }
+    .sub { font: 11px system-ui, sans-serif; fill: #9b9b9b; }
+    .label { font: 600 11px ui-monospace, Consolas, monospace; letter-spacing: 0.12em; fill: #f2f2f0; text-transform: uppercase; }
+    .line { stroke: #3a3a3f; stroke-width: 1; fill: none; }
+    .hot { stroke: #ff6f37; }
+    .note { font: 10px ui-monospace, Consolas, monospace; fill: #9b9b9b; }
+  </style>
+  <rect width="720" height="380" fill="#0a0a0b"/>
+  <rect class="group" x="12" y="40" width="696" height="326" rx="8"/>
+  <text class="label" x="24" y="30">Azure virtual network · sql subnet</text>
+  <rect class="box" x="275" y="58" width="170" height="52" rx="6"/>
+  <text class="title" x="289" y="81">Clients</text><text class="sub" x="289" y="98">connect to the listener</text>
+  <rect class="box accent" x="255" y="148" width="210" height="52" rx="6"/>
+  <text class="title" x="269" y="171">Internal load balancer</text><text class="sub" x="269" y="188">listener IP, floating IP</text>
+  <rect class="box accent" x="40" y="254" width="230" height="64" rx="6"/>
+  <text class="title" x="54" y="279">sql1 · primary</text><text class="sub" x="54" y="297">zone 1, answers the probe</text>
+  <rect class="box" x="450" y="254" width="230" height="64" rx="6"/>
+  <text class="title" x="464" y="279">sql2 · secondary</text><text class="sub" x="464" y="297">zone 2, synchronous commit</text>
+  <rect class="box" x="290" y="300" width="140" height="44" rx="6"/>
+  <text class="title" x="304" y="319">Cloud witness</text><text class="sub" x="304" y="335">quorum vote 3</text>
+  <path class="line" d="M360 110 L360 148"/>
+  <path class="line hot" d="M320 200 L155 254"/>
+  <path class="line" d="M400 200 L565 254" stroke-dasharray="4 4"/>
+  <path class="line hot" d="M270 272 L450 272"/>
+  <text class="note" x="360" y="264" text-anchor="middle">sync commit, TCP 5022</text>
+  <text class="note" x="215" y="222">probe 59999: up</text>
+  <text class="note" x="450" y="222">probe: down</text>
+  <text class="note" x="368" y="134">1433</text>
+</svg>
