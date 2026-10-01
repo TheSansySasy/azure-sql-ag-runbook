@@ -8,7 +8,7 @@
 
 A two-node SQL Server Always On availability group on Azure: the infrastructure as Bicep, the build and failover procedures, the scripts I would want on call, and a troubleshooting guide for the Kerberos failure that is easy to misdiagnose.
 
-> **A clean-room reference.** It captures how I build and run this kind of cluster, written from scratch for this repository. Nothing in it comes from a client environment. The story behind the troubleshooting guide is at [sansysasy.com](https://sansysasy.com/#work/sql-always-on-azure).
+> **A clean-room reference.** It captures how I build and run this kind of cluster, written from scratch for this repository. Nothing in it comes from a client environment. The story behind the troubleshooting guide is at [my portfolio](https://portfolio.rai-sanskar304.workers.dev/#work/sql-always-on-azure).
 
 ![Topology](docs/topology.svg)
 
@@ -50,4 +50,4 @@ Invoke-Pester ./tests    # Pester 5; the scripts' decision logic, no cluster nee
 
 ---
 
-[Sanskar Rai](https://sansysasy.com) · [@SansySasy](https://github.com/TheSansySasy) · MIT licence
+[Sanskar Rai](https://portfolio.rai-sanskar304.workers.dev) · [@SansySasy](https://github.com/TheSansySasy) · MIT licence
