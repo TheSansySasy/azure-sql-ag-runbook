@@ -21,6 +21,7 @@ A two-node SQL Server Always On availability group on Azure: the infrastructure 
 | [`docs/failover.md`](docs/failover.md) | Planned, automatic and forced failover, and what to check before and after |
 | [`docs/kerberos-cau.md`](docs/kerberos-cau.md) | `KRB_AP_ERR_MODIFIED`: what it means, the search in order, and the offline Cluster-Aware Updating role behind it |
 | [`docs/monitoring.md`](docs/monitoring.md) | What to watch and why, including every cluster resource's state |
+| [`scripts/New-AdForest.ps1`](scripts/New-AdForest.ps1) | Promotes a server to the first domain controller of a new forest, for when no domain exists yet; supports `-WhatIf` |
 | [`scripts/Watch-DiskThreshold.ps1`](scripts/Watch-DiskThreshold.ps1) | Warn and critical free-space thresholds per volume, a webhook, and an exit code any agent can read |
 | [`scripts/Invoke-CpuFailover.ps1`](scripts/Invoke-CpuFailover.ps1) | Fails over on sustained CPU, only to a synchronized secondary, with a cooldown; supports `-WhatIf` |
 | [`scripts/Test-KerberosHealth.ps1`](scripts/Test-KerberosHealth.ps1) | Duplicate SPNs, the listener SPN, the machine account, and cluster resource states, as one table |

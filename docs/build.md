@@ -14,7 +14,14 @@ The outputs give the listener address, the probe port and the witness storage ac
 
 ## 2. Join both VMs to the domain
 
-Both replicas, the cluster and the listener live in Active Directory. Point the VNet's DNS at your domain controllers first, then join each VM and restart it. From here on, sign in with a domain account that can create computer objects, or have the cluster and listener objects prestaged.
+Both replicas, the cluster and the listener live in Active Directory. If there is no domain yet, promote a separate Windows Server VM in the same network to a domain controller first with [`scripts/New-AdForest.ps1`](../scripts/New-AdForest.ps1):
+
+```powershell
+Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+.\New-AdForest.ps1 -DomainName corp.example.local -NetbiosName CORP
+```
+
+Point the VNet's DNS at your domain controllers, then join each SQL VM and restart it. From here on, sign in with a domain account that can create computer objects, or have the cluster and listener objects prestaged.
 
 ## 3. Create the cluster
 
